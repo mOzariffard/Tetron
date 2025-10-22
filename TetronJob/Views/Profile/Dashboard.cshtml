@@ -1,0 +1,49 @@
+﻿@model Framework.CQRS.Query.Admin.User.UserCategory
+@{
+    ViewData["Title"] = "حساب کاربری";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Style
+{
+    <link rel="stylesheet" href="~/assets/vendor/css/pages/page-profile.css">
+}
+@section Script
+    {
+        <script src="~/assets/js/pages-profile.js"></script>
+}
+<div class="row">
+    
+    
+    <nav aria-label="breadcrumb">
+        <ol class="lh-1-85 breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/">خانه</a>
+            </li>
+          
+            <li class="breadcrumb-item active text-pink">حساب کاربری </li>
+        </ol>
+    </nav>
+
+    @await  Component.InvokeAsync("UserPanelComponent",@ViewBag.User)
+
+
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <ul class="nav nav-pills flex-column flex-sm-row mb-4">
+            <li class="nav-item mx-1">
+                <a  asp-controller="Profile" asp-action="Dashboard" class="nav-link btn-pink text-white my-1 my-md-0" >
+                    <i class="bx bx-user me-1"></i> آگهی های من
+                </a>
+            </li>
+           <li class="nav-item mx-1">
+                <a asp-controller="Profile" asp-action="EditProfile" class="nav-link btn-pink text-white my-1 my-md-0" >
+                    <i class="bx bx-user me-1"></i> ویرایش حساب کاربری
+                </a>
+            </li>
+          
+        </ul>
+    </div>
+</div>
+
+@await  Component.InvokeAsync("UserAdvertisesComponent",@ViewBag.User)

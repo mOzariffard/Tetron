@@ -1,0 +1,67 @@
+﻿@model List<Framework.CQRS.Query.ArticleCategory.CategoryBox>
+@{
+    ViewData["Title"] = "لیست دسته بندی مقالات";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Style
+{
+    <link rel="stylesheet" href="~/assets/vendor/css/pages/page-help-center.css">
+}
+<nav aria-label="breadcrumb">
+    <ol class="lh-1-85 breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/">خانه</a>
+        </li>
+     
+        <li class="breadcrumb-item active text-pink"> دسته بندی مقالات </li>
+    </ol>
+</nav>
+    <div class="card overflow-hidden mb-5">
+       
+        <!-- Knowledge Base -->
+        <div class="help-center-knowledge-base help-center-bg-alt py-5 mb-5">
+            <div class="container-xl py-2">
+                <h4 class="text-center pb-4 secondary-font">پایگاه دانش</h4>
+                <div class="row">
+                    <div class="col-lg-10 mx-auto">
+                        <div class="row">
+                           
+                         @foreach (var item in Model)
+                         {
+                             <div class="col-md-4 col-sm-6 mb-4">
+                                
+                                 <div class="card">
+                                     <div class="card-body">
+                                         <div class="d-flex align-items-center mb-2">
+                                             <span class="badge bg-label-success p-2 rounded me-2">
+                                                 <i class="bx bx-book bx-sm"></i>
+                                             </span>
+                                             <h5 class="fw-semibold mt-3 ms-1">@item.ArticleCategoryTitle</h5>
+                                         </div>
+                                         <ul class="lh-1-85">
+                                             @if (item.Article != null)
+                                             {
+                                                 @foreach (var article in item.Article)
+                                                 {
+                                                     <li class="text-primary py-1">
+                                                         <a asp-controller="Blog" asp-action="BlogDetail" asp-route-id="@article.Id"> @article.ArticleTitle </a>
+                                                     </li>
+                                                 }
+                                             }
+
+                                         </ul>
+                                         <p class="mb-0 fw-semibold">
+                                             <a asp-controller="Blog" asp-action="Blogs" asp-route-id="@item.Id" asp-route-name="@item.ArticleCategoryTitle">مشاهده همه</a>
+                                         </p>
+                                     </div>
+                                 </div>
+                             </div>
+                         }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Knowledge Base -->
+       
+    </div>
